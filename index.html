@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { 
+      font-size: 11px; 
+      text-align: center; 
+      margin-top: 100px;
+      color: white;
+    }
+    .attribution a { 
+      color: hsl(228, 45%, 44%); 
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      width: 80%;
+      margin: 40px auto;
+      background-color: hsl(216, 12%, 8%);
+    }
+
+    .container {
+      display: grid;
+      width: 330px;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      background-color: hsl(213, 19%, 18%);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+
+    .text {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .text p {
+      color: hsl(216, 12%, 54%);
+    }
+
+    .rating {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      place-items: center;
+    }
+
+    .rating1 {
+      background-color: hsl(216, 12%, 15%);
+      padding: 5px;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: hsl(216, 12%, 50%)
+    } 
+
+    .button button {
+      display: flex;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+      justify-content: center;
+    }
+
+    .circle {
+      background-color: hsl(216, 12%, 15%);
+      padding: 7px;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      color: hsl(216, 12%, 54%);
+    }
+
+    .rating1:hover {
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+      cursor: pointer;
+    }
+
+    .button button:hover {
+      background-color: white;
+      color: hsl(25, 97%, 53%);
+      cursor: pointer;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .orange {
+      display: flex;
+      justify-content: center;
+      background-color: rgb(30, 30, 42);
+      color: hsl(25, 97%, 53%);
+      padding: 5px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Rating state start -->
+  <div class="container">
+    <div class="star circle">
+        <img src="images/icon-star.svg" alt="">
+    </div>
+    <div class="text">
+      <h1> How did we do?</h1>
+      <p>  Please let us know how we did with your support request. All feedback is appreciated 
+        to help us improve our offering!</p>
+
+    </div>
+    <div class="rating">
+      <div class="rating1">1</div>
+      <div class="rating1">2</div>
+      <div class="rating1">3</div>
+      <div class="rating1">4</div>
+      <div class="rating1">5</div>
+    </div>
+    <div class="button">
+      <button>SUBMIT</button>
+    </div>
+  </div>
+
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  </div>
+  <script>
+    const starEl = document.querySelector(".star");
+    const textEl = document.querySelector(".text");
+    const ratingEl = document.querySelector(".rating");
+    const buttonEl = document.querySelector(".button");
+    const inRating = document.querySelectorAll(".rating1");
+    let userStar;
+
+    for(let i=0; i<inRating.length; i++) {
+      inRating[i].addEventListener("click" ,function() {
+      if(!userStar) {
+        userStar = this.textContent;
+        this.style.backgroundColor = "gray";
+        this.style.color = "white";
+        buttonEl.addEventListener("click", function() {
+        starEl.classList.remove("circle");
+        starEl.innerHTML = "<img src='images/illustration-thank-you.svg'>";
+        starEl.classList.add("center")
+        textEl.innerHTML = `You have selected ${userStar} out of 5`;
+        textEl.classList.add("orange")
+        ratingEl.innerHTML = "<h1>Thank you!</h1>";
+        ratingEl.style.color = "white";
+        ratingEl.classList.add("center");
+        buttonEl.innerHTML = `<p> We appreciate you taking the time to give a rating. 
+                              If you ever need more support, don’t hesitate to get in touch!</p>`
+        buttonEl.style.color = "hsl(216, 12%, 54%)";
+        buttonEl.style.textAlign = "center";
+      })
+      }
+      
+    }) 
+    }
+
+    
+  
+
+
+ 
+  </script>
+</body>
+</html>
